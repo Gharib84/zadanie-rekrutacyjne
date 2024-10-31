@@ -15,25 +15,24 @@ Projekt ten jest aplikacją opartą na [technologiach użytych w projekcie, np. 
 ### Krok 1: Klonowanie Repozytorium
 Aby rozpocząć, należy sklonować repozytorium projektu:
 ```bash
-git clone [https://github.com/Gharib84/zadanie-rekrutacyjne.git]
+$ git clone [https://github.com/Gharib84/zadanie-rekrutacyjne.git]
 cd [projekt]
 ```
 
-```bash
 # Docker 
-sudo docker compose -f docker-compose.yaml up --build -d
+$ sudo docker compose -f docker-compose.yaml up --build -d
 
 ### Krok 2: Instalacja zależności
 
 # Docker bash
-sudo docker compose -f docker-compose.yaml exec app  bash
+$ sudo docker compose -f docker-compose.yaml exec app  bash
 
 # PHP
-composer install
+$ composer install
 
 # JavaScript
-npm install     # lub yarn install
-```
+$ npm install     # lub yarn install
+
 
 ### Krok 3: Skonfiguruj Plik `.env`
 Uzupełnij plik `.env` danymi konfiguracji środowiska. Poniżej znajduje się przykład najważniejszych zmiennych:

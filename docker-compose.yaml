@@ -31,13 +31,13 @@ services:
     restart: unless-stopped
     container_name: "symfony-pma"
     ports:
-      - "9981:80" # the service will be available in my browser at http://localhost:<DC_PMA_PORT>
+      - "9981:80" 
     depends_on:
       - db
     environment:
-      PMA_HOST: db # must match the service name used for the MySQL database above
-      PMA_USER: app_task # must match the value of MYSQL_USER above
-      PMA_PASSWORD: test # must match the value of MYSQL_PASSWORD above
+      PMA_HOST: db 
+      PMA_USER: app_task 
+      PMA_PASSWORD: test 
 
 volumes:
-  mysql_data: # the volume name used in db:volumes above
+  mysql_data:
