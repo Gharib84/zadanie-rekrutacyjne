@@ -8,7 +8,7 @@
 
 Nowoczesna aplikacja oparta na Symfony 7, zaprojektowana do efektywnego przetwarzania danych i integracji API. Zbudowana zgodnie z najlepszymi praktykami branżowymi i wykorzystująca najnowsze technologie, zapewniając łatwość utrzymania i skalowalność.
 
-## ⚙️ Użyte Technologie
+<h1>⚙️ Użyte Technologie</h1>
 
 - PHP 8.1+
 - Symfony 7.0
