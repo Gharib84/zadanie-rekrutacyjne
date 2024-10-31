@@ -1,0 +1,36 @@
+services:
+  data_modal_repository:
+    class: App\Repository\DataModelCsvRepository
+    public: true
+
+  json_data_repository:
+    class: App\Repository\JsonDataRepository
+    public: true
+
+  App\EventListener\DataLoaderListener:
+        tags: [kernel.event_listener]
+
+  ldif_file_repository:
+    class: App\Repository\LdifContentRepository;
+    public: true;
+
+  data_model_service:
+    class: APP\Service\FileSystemService
+    public: true
+    arguments:
+      - [
+          "@doctrine.orm.entity_manage",
+          "@data_modal_repository",
+          "@json_data_repository",
+          "@ldif_file_repository"
+        ]
+    tags:
+      - {
+          name: kernel.event_listener,
+          event: kernel.request,
+          method: onKernelRequest,
+        }
+
+  App\Controller\AnalysisController:
+    arguments:
+      - "@data_model_service"

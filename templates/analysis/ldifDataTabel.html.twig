@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+	<!--data table here-->
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col" class="text-capitalize">nazwa klienta</th>
+				<th scope="col" class="text-capitalize">kraj</th>
+				<th scope="col" class="text-capitalize">zamówienie</th>
+				<th scope="col" class="text-capitalize">status</th>
+				<th scope="col" class="text-capitalize">grupa</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for report in reports %}
+				<tr>
+					<th scope="row">{{loop.index}}</th>
+					<td>{{report.customer}}</td>
+					<td>{{report.country}}</td>
+					<td>{{report.customerOrder}}</td>
+					<td>{{report.status}}</td>
+					<td>{{report.customerGroup}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="navigation">
+		{{ knp_pagination_render(reports) }}
+	</div>
+</div></div>{% endblock %}

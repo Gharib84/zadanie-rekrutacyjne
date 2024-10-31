@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: app
+    restart: unless-stopped
+    container_name: symfony-app-task 
+    depends_on:
+      - db 
+    ports:
+      - "9980:80" 
+    volumes:
+      - .:/var/www/project 
+      - ./000-default.conf:/etc/apache2/sites-available/000-default.conf:ro 
+      - ./.bashrc:/root/.bashrc:ro 
+      - ./data:/mnt/data
+  db:
+    image: mysql:8.4
+    restart: unless-stopped 
+    container_name: "symfony-db"
+    volumes:
+      - mysql_data:/var/lib/mysql 
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+      MYSQL_USER: app_task
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: task_db
+  phpmyadmin:
+    image: phpmyadmin
+    restart: unless-stopped
+    container_name: "symfony-pma"
+    ports:
+      - "9981:80" # the service will be available in my browser at http://localhost:<DC_PMA_PORT>
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db # must match the service name used for the MySQL database above
+      PMA_USER: app_task # must match the value of MYSQL_USER above
+      PMA_PASSWORD: test # must match the value of MYSQL_PASSWORD above
+
+volumes:
+  mysql_data: # the volume name used in db:volumes above

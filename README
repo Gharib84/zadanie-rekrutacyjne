@@ -1,0 +1,107 @@
+<h3>zadanie rekrutacyjne symfony 7</h3>
+
+# [zadanie rekrutacyjne] Dokumentacja
+
+## Wprowadzenie
+Projekt ten jest aplikacją opartą na [technologiach użytych w projekcie, np. PHP, Symfony, Docker], stworzoną w celu [krótki opis celu projektu, np. przetwarzanie danych, integracja API, generowanie raportów]. W tej dokumentacji opisano sposób instalacji, konfiguracji oraz uruchomienia projektu, aby użytkownicy mogli go skutecznie wykorzystać.
+
+## Wymagania systemowe
+- PHP w wersji [wymagana wersja, np. 8.1+]
+- Docker i Docker Compose (opcjonalnie, jeśli aplikacja używa Dockera)
+- Baza danych [typ bazy danych, np. MySQL 5.7+]
+
+## Instalacja
+
+### Krok 1: Klonowanie Repozytorium
+Aby rozpocząć, należy sklonować repozytorium projektu:
+```bash
+git clone [https://github.com/Gharib84/zadanie-rekrutacyjne.git]
+cd [projekt]
+```
+
+```bash
+# Docker 
+sudo docker compose -f docker-compose.yaml up --build -d
+
+### Krok 2: Instalacja zależności
+
+# Docker bash
+sudo docker compose -f docker-compose.yaml exec app  bash
+
+# PHP
+composer install
+
+# JavaScript
+npm install     # lub yarn install
+```
+
+### Krok 3: Skonfiguruj Plik `.env`
+Uzupełnij plik `.env` danymi konfiguracji środowiska. Poniżej znajduje się przykład najważniejszych zmiennych:
+```dotenv
+DATABASE_URL="mysql://app_task:test@db:3306/task_db?serverVersion=8.0.32&charset=utf8mb4"
+"
+```
+
+## Używanie Dockera (opcjonalne)
+
+### Uruchamianie Projektu w Dockerze
+Jeśli korzystasz z Dockera, skorzystaj z następujących poleceń, aby uruchomić środowisko lokalne:
+
+```bash
+docker-compose up -d -f docker-compose.yaml --build
+```
+
+Dzięki temu aplikacja oraz baza danych uruchomią się w kontenerach Dockerowych, zgodnie z konfiguracją w `docker-compose.yml`.
+
+### Instalacja Rozszerzeń PHP w Dockerze
+Jeśli potrzebujesz dodatkowych rozszerzeń PHP, np. `gd` dla manipulacji obrazami, użyj następującej konfiguracji w Dockerfile:
+```Dockerfile
+RUN apt-get update && \
+    apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd
+```
+
+## Uruchomienie Projektu
+
+### Uruchomienie serwera lokalnego
+Aby uruchomić serwer aplikacji lokalnie, wykonaj następujące polecenie:
+```bash
+php bin/console server:run
+```
+
+Serwer uruchomi się pod adresem [http://localhost:9980/](http://localhost:9981).
+
+## Struktura Repozytorium
+
+Projekt jest zorganizowany zgodnie z poniższą strukturą:
+```plaintext
+[project]/
+├── config/             # Pliki konfiguracji aplikacji
+├── src/                # Główne pliki źródłowe aplikacji
+├── templates/          # Pliki szablonów
+├── public/             # Pliki publiczne (np. index.php, zasoby statyczne)
+├── migrations/         # Migracje bazy danych
+└── tests/              # Testy jednostkowe i integracyjne
+```
+
+## Testy
+
+### Uruchamianie Testów
+Testy można uruchomić za pomocą narzędzia PHPUnit:
+```bash
+php bin/phpunit
+```
+
+Wszystkie pliki testów znajdują się w folderze `tests/`.
+
+## Wsparcie i Kontakt
+W przypadku problemów lub pytań prosimy o kontakt na [mahmoudgharibsaid.100@gmail.com].
+
+--- 
+
+### Uwagi:
+- Wypełnij szczegóły (takie jak URL repozytorium, zmienne środowiskowe, dane konfiguracji) zgodnie z wymaganiami projektu.
+- Dostosuj język w sekcji „Wsparcie i Kontakt” do sposobu komunikacji preferowanego przez firmę.
+
+Daj znać, jeśli chcesz coś dodać lub zmienić w tej wersji!
