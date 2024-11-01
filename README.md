@@ -73,6 +73,7 @@ php bin/console server:run
 
 # Dostęp do aplikacji
 # http://localhost:9980/
+# http://localhost:9981/
 ```
 
 ### Zarządzanie Bazą Danych
