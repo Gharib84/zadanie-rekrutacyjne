@@ -35,6 +35,10 @@ docker compose -f docker-compose.yaml exec app bash
 # Instalacja zależności
 composer install
 npm install  # lub yarn install
+npm run dev
+
+# Wykonanie migracji
+php bin/console doctrine:migrations:migrate
 ```
 
 ### Konfiguracja Środowiska
