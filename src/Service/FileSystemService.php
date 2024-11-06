@@ -48,14 +48,7 @@ class FileSystemService
 
                 while (($data = fgetcsv($file, 0, '|')) !== false) {
                     if (count($data) === 5) {
-                        $insert = new DataModelCsv();
-                        $insert->setCustomer($data[0]);
-                        $insert->setCountry($data[1]);
-                        $insert->setCustomerOrder($data[2]);
-                        $insert->setStatus($data[3]);
-                        $insert->setCustomerGroup($data[4]);
-                        $this->entityManager->persist($insert);
-                        $records[] = $insert;
+                        $this->dataModelCsvRepository->insertCsvData($data);
                     }
                 }
             }
@@ -90,20 +83,11 @@ class FileSystemService
 
                 foreach ($jsonContents["data"] as $content) {
                     if (count($content) === 5) {
-                        $row = new JsonData();
-                        $row->setCustomer($content[0]);
-                        $row->setCountry($content[1]);
-                        $row->setCustomerOrder($content[2]);
-                        $row->setStatus($content[3]);
-                        $row->setCustomerGroup($content[4]);
-                        $this->entityManager->persist($row);
-                        $records[] = $row;
+                      $records[] = $this->jsonDataRepository->insertJsonData($content);
                     }
                 }
             }
         }
-
-        $this->entityManager->flush();
 
         return $records;
     }
@@ -137,24 +121,13 @@ class FileSystemService
                     $data[trim($key)] = trim($value);
                 }
             }
-
-            if (count($this->fetchDataFromLdifContentTable()) === 0) {
-                if (!empty($data['Customer'])) {
-                    $insertRow = new LdifContent();
-                    $insertRow->setCustomer($data['Customer']);
-                    $insertRow->setCountry($data['Country']);
-                    $insertRow->setCustomerOrder($data['Order']);
-                    $insertRow->setStatus($data['Status']);
-                    $insertRow->setCustomerGroup($data['Group']);
-                    $this->entityManager->persist($insertRow);
-                    $records[] = $insertRow;
-                }
-            }
+            
+            if (!empty($data['Customer'])) {
+                $this->ldifContentRepository->insertLdifData($data);
+            }  
         }
 
-        $this->entityManager->flush();
-
-        return $records;
+        return [];
     }
 
     public function fetchDataFromLdifContentTable(): array
@@ -183,6 +156,7 @@ class FileSystemService
     public function getTopCountryByGroup(array $allRecords): array
     {
         $groupCountries = $this->countCountriesByGroup($allRecords);
+
         return $this->findTopCountriesByGroup($groupCountries);
     }
 
