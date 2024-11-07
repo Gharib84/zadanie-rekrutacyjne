@@ -73,10 +73,14 @@ class AnalysisController extends AbstractController
       $fetachDataFromAllFiles = $this->fileSystemService->mergefilesContentTogether();
       $reportThirtyTopMedicines =  $this->fileSystemService->getTopThirtyMedicines($fetachDataFromAllFiles);
       $topCountryByGroup = $this->fileSystemService->getTopCountryByGroup($fetachDataFromAllFiles);
-      
+      $status = $this->fileSystemService->statusReportForEachFile();
+      $totals = $this->fileSystemService->totalNumberOfConsonantOfCustomer();
+
       return $this->render('/analysis/reportComponentView.html.twig',[
         "reportThirtyTopMedicines" => $reportThirtyTopMedicines,
-        "topCountryByGroup" => $topCountryByGroup
+        "topCountryByGroup" => $topCountryByGroup,
+        "status" => $status,
+        "totals" => $totals
 
       ]);
     }

@@ -187,4 +187,14 @@ class FileSystemService
 
         return $result;
     }
+
+    public function statusReportForEachFile():array
+    {
+        return $this->dataModelCsvRepository->statusReportForEachFile();
+    }
+
+    public function totalNumberOfConsonantOfCustomer():array
+    {
+        return $this->dataModelCsvRepository->totalNumberOfConsonantOfCustomer();
+    }
 }

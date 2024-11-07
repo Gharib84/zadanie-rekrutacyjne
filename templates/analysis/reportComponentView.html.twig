@@ -58,6 +58,63 @@
 					</table>
 				</div>
 			</div>
+			
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingTwo">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					 status matrymolnianego
+				</button>
+			</h2>
+			<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col" class="text-capitalize">Status</th>
+								<th scope="col" class="text-capitalize">Rodzaje Plik</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for status in status %}
+								<tr>
+									<th scope="row">{{loop.index}}</th>
+									<td>{{status.status}}</td>
+									<td class="text-left">{{status.highest_count_sources}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingTwo">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					  ilość spółgłosek zapisanych w polu Customer
+				</button>
+			</h2>
+			<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col" class="text-capitalize">ilość spółgłosek</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for total in totals %}
+								<tr>
+									<th scope="row">{{loop.index}}</th>
+									<td>{{total.total_consonants}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 
